@@ -8,30 +8,7 @@ public class WordFrequencyGame {
 
     public String getResult(String senstence) {
 
-//        if (senstence.split(SPACE_PATTERN).length==1) {
-//            return senstence + " 1";
-//        } else {
-//
-//            try {
-//
-//                String[] words = senstence.split(SPACE_PATTERN);
-//
-//                List<wordInfo> wordInfoList = new ArrayList<>();
-//                for (String word : words) {
-//                    wordInfo wordInfo = new wordInfo(word, 1);
-//                    wordInfoList.add(wordInfo);
-//                }
-//
-//                Map<String, List<wordInfo>> wordListMap =getListMap(wordInfoList);
-//
-//                List<wordInfo> tempWordInfos = new ArrayList<>();
-//                for (Map.Entry<String, List<wordInfo>> entry : wordListMap.entrySet()) {
-//                    wordInfo wordInfo = new wordInfo(entry.getKey(), entry.getValue().size());
-//                    tempWordInfos.add(wordInfo);
-//                }
-//                wordInfoList = tempWordInfos;
         try {
-
                 List<wordInfo> wordInfoList = computeWordCount(senstence);
                 sortWordInfoListByBesc(wordInfoList);
                 return generateFrequencyWord(wordInfoList);
@@ -50,7 +27,6 @@ public class WordFrequencyGame {
             int count = (int)words.stream().filter(word -> word.equals(theWord)).count();
             wordInfos.add(new wordInfo(theWord, count));
         }
-
         return wordInfos;
     }
 
