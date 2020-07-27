@@ -32,9 +32,9 @@ public class WordFrequencyGame {
 //                wordInfoList = tempWordInfos;
         try {
 
-        List<wordInfo> wordInfoList = computeWordCount(senstence);
+                List<wordInfo> wordInfoList = computeWordCount(senstence);
+                sortWordInfoListByBesc(wordInfoList);
 
-                wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
 
                 StringJoiner frequencyWord = new StringJoiner(LINE_BREAK_DELIMITER);
                 for (wordInfo wordInfo : wordInfoList) {
@@ -74,5 +74,10 @@ public class WordFrequencyGame {
         }
 
         return wordInfos;
+    }
+
+
+    private void sortWordInfoListByBesc(List<wordInfo> wordInfoList){
+        wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
     }
 }
