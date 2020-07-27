@@ -57,9 +57,9 @@ public class WordFrequencyGame {
         for (wordInfo wordInfo : wordInfoList){
 //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
             if (!map.containsKey(wordInfo.getWord())) {
-                ArrayList arr = new ArrayList<>();
-                arr.add(wordInfo);
-                map.put(wordInfo.getWord(), arr);
+                ArrayList wordInfos = new ArrayList<>();
+                wordInfos.add(wordInfo);
+                map.put(wordInfo.getWord(), wordInfos);
             }
             else {
                 map.get(wordInfo.getWord()).add(wordInfo);
