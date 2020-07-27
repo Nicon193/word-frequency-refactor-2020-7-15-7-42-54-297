@@ -34,14 +34,7 @@ public class WordFrequencyGame {
 
                 List<wordInfo> wordInfoList = computeWordCount(senstence);
                 sortWordInfoListByBesc(wordInfoList);
-
-
-                StringJoiner frequencyWord = new StringJoiner(LINE_BREAK_DELIMITER);
-                for (wordInfo wordInfo : wordInfoList) {
-                    String result = wordInfo.getWord() + " " +wordInfo.getWordCount();
-                    frequencyWord.add(result);
-                }
-                return frequencyWord.toString();
+                return generateFrequencyWord(wordInfoList);
             } catch (Exception e) {
                 return CALCULATE_ERROR;
             }
@@ -80,4 +73,15 @@ public class WordFrequencyGame {
     private void sortWordInfoListByBesc(List<wordInfo> wordInfoList){
         wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
     }
+
+    public String generateFrequencyWord(List<wordInfo> wordInfos){
+
+        StringJoiner frequencyWord = new StringJoiner(LINE_BREAK_DELIMITER);
+        for (wordInfo wordInfo : wordInfos) {
+            String result = wordInfo.getWord() + " " +wordInfo.getWordCount();
+            frequencyWord.add(result);
+        }
+        return frequencyWord.toString();
+    }
+
 }
