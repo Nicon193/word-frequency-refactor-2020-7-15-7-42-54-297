@@ -6,7 +6,9 @@ import java.util.StringJoiner;
 
 public class WordFrequencyGame {
 
-    public static final String SPACE_PATTERN= "\\s+";
+    private final String SPACE_PATTERN= "\\s+";
+    private final String LINE_BREAK_DELIMITER = "\n";
+    private final String CALCULATE_ERROR = "Calculate Error";
 
     public String getResult(String senstence) {
 
@@ -38,14 +40,14 @@ public class WordFrequencyGame {
 
                 wordInfoList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
-                StringJoiner joiner = new StringJoiner("\n");
+                StringJoiner joiner = new StringJoiner(LINE_BREAK_DELIMITER);
                 for (wordInfo w : wordInfoList) {
                     String s = w.getValue() + " " +w.getWordCount();
                     joiner.add(s);
                 }
                 return joiner.toString();
             } catch (Exception e) {
-                return "Calculate Error";
+                return CALCULATE_ERROR;
             }
         }
     }
