@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class WordFrequencyGame {
 
@@ -12,29 +8,31 @@ public class WordFrequencyGame {
 
     public String getResult(String senstence) {
 
+//        if (senstence.split(SPACE_PATTERN).length==1) {
+//            return senstence + " 1";
+//        } else {
+//
+//            try {
+//
+//                String[] words = senstence.split(SPACE_PATTERN);
+//
+//                List<wordInfo> wordInfoList = new ArrayList<>();
+//                for (String word : words) {
+//                    wordInfo wordInfo = new wordInfo(word, 1);
+//                    wordInfoList.add(wordInfo);
+//                }
+//
+//                Map<String, List<wordInfo>> wordListMap =getListMap(wordInfoList);
+//
+//                List<wordInfo> tempWordInfos = new ArrayList<>();
+//                for (Map.Entry<String, List<wordInfo>> entry : wordListMap.entrySet()) {
+//                    wordInfo wordInfo = new wordInfo(entry.getKey(), entry.getValue().size());
+//                    tempWordInfos.add(wordInfo);
+//                }
+//                wordInfoList = tempWordInfos;
+        try {
 
-        if (senstence.split(SPACE_PATTERN).length==1) {
-            return senstence + " 1";
-        } else {
-
-            try {
-
-                String[] words = senstence.split(SPACE_PATTERN);
-
-                List<wordInfo> wordInfoList = new ArrayList<>();
-                for (String word : words) {
-                    wordInfo wordInfo = new wordInfo(word, 1);
-                    wordInfoList.add(wordInfo);
-                }
-
-                Map<String, List<wordInfo>> wordListMap =getListMap(wordInfoList);
-
-                List<wordInfo> tempWordInfos = new ArrayList<>();
-                for (Map.Entry<String, List<wordInfo>> entry : wordListMap.entrySet()) {
-                    wordInfo wordInfo = new wordInfo(entry.getKey(), entry.getValue().size());
-                    tempWordInfos.add(wordInfo);
-                }
-                wordInfoList = tempWordInfos;
+        List<wordInfo> wordInfoList = computeWordCount(senstence);
 
                 wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
 
@@ -48,7 +46,7 @@ public class WordFrequencyGame {
                 return CALCULATE_ERROR;
             }
         }
-    }
+
 
     private Map<String, List<wordInfo>> getListMap(List<wordInfo> wordInfoList) {
         Map<String, List<wordInfo>> wordListMap = new HashMap<>();
@@ -63,5 +61,18 @@ public class WordFrequencyGame {
             }
         }
         return wordListMap;
+    }
+
+    private List<wordInfo> computeWordCount(String senstence){
+
+        List<wordInfo> wordInfos = new ArrayList<>();
+        List<String> words = Arrays.asList(senstence.split(SPACE_PATTERN));
+
+        for (String theWord: new HashSet<>(words)) {
+            int count = (int)words.stream().filter(word -> word.equals(theWord)).count();
+            wordInfos.add(new wordInfo(theWord, count));
+        }
+
+        return wordInfos;
     }
 }
