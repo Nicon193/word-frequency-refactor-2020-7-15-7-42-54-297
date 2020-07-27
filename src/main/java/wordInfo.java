@@ -7,7 +7,7 @@ public class wordInfo {
         this.count = count;
     }
 
-    public String getValue() {
+    public String getWord() {
         return this.word;
     }
 
