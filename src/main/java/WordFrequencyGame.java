@@ -9,7 +9,7 @@ public class WordFrequencyGame {
     public String getResult(String senstence) {
 
         try {
-            List<wordInfo> wordInfoList = computeWordCount(senstence);
+            List<WordInfo> wordInfoList = computeWordCount(senstence);
             sortWordInfoListByBesc(wordInfoList);
             return generateFrequencyWord(wordInfoList);
         } catch (Exception e) {
@@ -18,27 +18,27 @@ public class WordFrequencyGame {
     }
 
 
-    private List<wordInfo> computeWordCount(String senstence) {
+    private List<WordInfo> computeWordCount(String senstence) {
 
-        List<wordInfo> wordInfos = new ArrayList<>();
+        List<WordInfo> WordInfos = new ArrayList<>();
         List<String> words = Arrays.asList(senstence.split(SPACE_PATTERN));
 
         for (String theWord : new HashSet<>(words)) {
             int count = (int) words.stream().filter(word -> word.equals(theWord)).count();
-            wordInfos.add(new wordInfo(theWord, count));
+            WordInfos.add(new WordInfo(theWord, count));
         }
-        return wordInfos;
+        return WordInfos;
     }
 
 
-    private void sortWordInfoListByBesc(List<wordInfo> wordInfoList) {
+    private void sortWordInfoListByBesc(List<WordInfo> wordInfoList) {
         wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
     }
 
-    public String generateFrequencyWord(List<wordInfo> wordInfos) {
+    public String generateFrequencyWord(List<WordInfo> WordInfos) {
 
         StringJoiner frequencyWord = new StringJoiner(LINE_BREAK_DELIMITER);
-        for (wordInfo wordInfo : wordInfos) {
+        for (WordInfo wordInfo : WordInfos) {
             String result = wordInfo.getWord() + " " + wordInfo.getWordCount();
             frequencyWord.add(result);
         }
